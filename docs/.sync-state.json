@@ -17,11 +17,11 @@
         "scripts/docs": "72348880ffcbe2c7a651f16915f2d18cce577abddd5a4d7a5609407f904be7cc",
         "docs/docs.config.json": "2dbc4617124fe184ac8e67a269bb1c5d5d164fbdc4f8eb2040eb1a1d85f3e436",
         "package.json": "0f230d32dd623a368f210c6b97f33bb80df36c2cd5cd74dd67b97770d44ac808",
-        "AGENTS.md": "456004fae002dbce230cfc8568ac4a1ee250b43ee351f7c6a0536e62fcefb522"
+        "AGENTS.md": "7d7d01a413601559c96cdd9354fcf8830f6241abd0a422000456b8499e0dc1a1"
       },
-      "reviewed_at": "2026-10-05T19:49:29.412Z",
+      "reviewed_at": "2026-10-05T19:49:58.056Z",
       "by": "claude/opus-5.5",
-      "note": "Wrote the generalized OKF profile and sync playbook for the template; commands match scripts/docs and package.json."
+      "note": "AGENTS.md rewritten as lean pointers; it still requires this workflow and links here. Prose unchanged."
     },
     "docs/agents/verification.md": {
       "document": "776ae8e0de0b02954bc2d3df4c8c4df332ff4eb5746e5b9f1edb1a34446ced33",
