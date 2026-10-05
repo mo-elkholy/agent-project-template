@@ -1,0 +1,7 @@
+{
+  "title": "{{PROJECT_NAME}} documentation",
+  "trackRoots": ["src", "scripts", "tests", "docs", ".agents", ".github", "AGENTS.md", "README.md", "PLAYBOOK.md", "GLOSSARY.md", "package.json", "template.config.json"],
+  "linkCheckedFiles": ["AGENTS.md", "README.md", "PLAYBOOK.md", "GLOSSARY.md", "changelog.md"],
+  "requiredKeys": ["type", "title", "description", "owner"],
+  "statuses": ["draft", "stable", "deprecated"]
+}

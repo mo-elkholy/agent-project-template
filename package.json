@@ -8,7 +8,7 @@
     "docs:sync": "node scripts/docs/docs.mjs sync",
     "docs:check": "node scripts/docs/docs.mjs check",
     "docs:ack": "node scripts/docs/docs.mjs ack",
-    "test:tools": "node --test scripts/"
+    "test:tools": "node --test \"scripts/**/*.test.mjs\""
   },
   "dependencies": { "js-yaml": "^4.1.0" }
 }
