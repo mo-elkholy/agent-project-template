@@ -1,0 +1,3 @@
+interface:
+  display_name: "Start Issue"
+  short_description: "Claim an issue and hand it to an agent in a worktree"

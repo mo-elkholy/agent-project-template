@@ -1,0 +1,5 @@
+interface:
+  display_name: "Project Setup"
+  short_description: "Configure this repo for the agent project workflow"
+policy:
+  allow_implicit_invocation: false
