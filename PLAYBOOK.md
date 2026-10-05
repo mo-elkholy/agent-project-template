@@ -123,7 +123,8 @@ You can skip this section when you click **Use this template**. It records what 
 │   ├── config.mjs                    Shared helpers: config, commands.
 │   ├── issue/                        start, setup-worktree, wait-codex-review, finish (+ lib + tests)
 │   ├── github/                       bootstrap-labels + labels.json (+ lib + tests)
-│   └── docs/                         docs.mjs drift tool, manuals.mjs (+ tests)
+│   ├── docs/                         docs.mjs drift tool, manuals.mjs (+ tests)
+│   └── setup/                        placeholders.mjs, upstream.mjs (+ tests)
 └── docs/
     ├── index.md                      Generated: every document with its description.
     ├── SPEC.md                       The documentation profile (rules for docs).
@@ -402,6 +403,7 @@ This workflow was first built for a desktop application developed by one owner w
 - **Add canonical documents** under `docs/` with frontmatter and `tracks`, then `docs:sync` and `docs:ack`. List them in the sources-of-truth table in `docs/SPEC.md`.
 - **Add CI later:** a job that runs `npm ci && npm run test:tools && npm run docs:check` is a fast first gate.
 - **Change the stops:** do not remove them. If you want fewer interruptions, batch several small issues into one PR rather than letting agents merge alone.
+- **Keep up with Matt Pocock's skills:** run `node scripts/setup/upstream.mjs` after updating them; it fails if a skill this template calls was renamed or deprecated upstream. Update the skills and docs that name it.
 - **Different tracker:** Matt's setup supports local Markdown files and GitLab; our scripts assume GitHub. Swap `gh` calls in `scripts/issue/start.mjs` and `finish.mjs` if you move.
 
 ---

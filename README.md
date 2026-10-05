@@ -60,6 +60,7 @@ Copy the template's files into your repository (`AGENTS.md`, `CLAUDE.md` link, `
 | `scripts/issue/` | `start.mjs`, `setup-worktree.sh`, `wait-codex-review.mjs`, `finish.mjs` |
 | `scripts/github/` | `bootstrap-labels.mjs` and `labels.json` |
 | `scripts/docs/` | `docs.mjs` (indexes, drift fingerprints, review receipts) and the optional `manuals.mjs` |
+| `scripts/setup/` | `placeholders.mjs` (used by `/project-setup`) and `upstream.mjs` (checks Matt Pocock's skills still exist upstream) |
 | [docs/agents/](docs/agents/index.md) | Verification cadence, parallel work, lifecycle, review risks, dependency policy |
 | [docs/](docs/index.md) | Documentation profile, sync guide, issue register, log |
 | [GLOSSARY.md](GLOSSARY.md), [changelog.md](changelog.md) | Shared language; concise change history |
