@@ -40,7 +40,7 @@ export function startProblems({ issue, inProgress, openBlockers }) {
   ];
 }
 
-const stopWords = new Set(["and", "the", "of", "for", "to", "a", "an", "with", "through", "in", "on"]);
+const stopWords = new Set(["and", "the", "of", "for", "to", "a", "an", "as", "at", "by", "from", "into", "with", "through", "in", "on"]);
 
 export function branchName({ title, number, idPrefix, branchPrefix }) {
   const escaped = String(idPrefix).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

@@ -40,7 +40,7 @@ Before writing, show: the filled `template.config.json`; the `AGENTS.md` changes
 ## 4. Write
 
 1. **Config:** fill `template.config.json` and set `"configured": true`.
-2. **Placeholders:** replace `{{PROJECT_NAME}}`, `{{ID_PREFIX}}`, `{{OWNER_REPO}}`, `{{BRANCH_PREFIX}}` and `{{DOC_OWNER}}` in every file that has them. Finish with `grep -rn '{{' --exclude-dir=node_modules --exclude-dir=.git .`; the only acceptable remaining matches are inside `.agents/skills/` instructions like this one.
+2. **Placeholders:** run `node scripts/setup/placeholders.mjs PROJECT_NAME=<name> ID_PREFIX=<prefix> OWNER_REPO=<owner/repo> BRANCH_PREFIX=<prefix> DOC_OWNER=<owner>`. It replaces only those five tokens and skips pinned references, dependencies and binaries. Then `node scripts/setup/placeholders.mjs --check` must report none remaining.
 3. **Agent rules, existing repository:** if `AGENTS.md` or `CLAUDE.md` already exists, merge: add the template's sections under their headings and keep every existing rule. If only `CLAUDE.md` exists, move its content into `AGENTS.md` and replace `CLAUDE.md` with a link (`ln -s AGENTS.md CLAUDE.md`), after showing the user. Never silently drop or reword their rules.
 4. **Docs:** fill the command table and regression groups in `docs/agents/verification.md`, the risk table in `docs/agents/review-risks.md`, `title` and `directories` in `docs/docs.config.json`, and add the project's real source folders to `trackRoots`. Wire `npm run docs:check` into the project's build or check command if the user agrees.
 5. **Disabled modules:** delete their files and every line that points at them:

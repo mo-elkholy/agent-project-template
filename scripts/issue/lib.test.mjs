@@ -43,6 +43,7 @@ test("branchName uses the register ID and a short slug", () => {
     branchName({ title: "ACME-012: Add the CSV export for reports", number: 40, idPrefix: "ACME", branchPrefix: "me" }),
     "me/acme-012-add-csv-export-reports",
   );
+  assert.equal(branchName({ title: "ACME-004: Export small runs as CSV", number: 4, idPrefix: "ACME", branchPrefix: "me" }), "me/acme-004-export-small-runs-csv");
   assert.equal(branchName({ title: "Fix login", number: 7, idPrefix: "ACME", branchPrefix: "me" }), "me/issue-7-fix-login");
   assert.equal(branchName({ title: "ACME-1: Ünïcode — only!!", number: 3, idPrefix: "ACME", branchPrefix: "" }), "acme-1-n-code-only");
 });

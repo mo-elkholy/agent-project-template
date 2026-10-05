@@ -14,9 +14,9 @@ Status: approved design, 2026-10-05. This document records why the template is s
 
 ## Purpose
 
-Capture the way of working that was set up for the Oktob project and generalize it into a reusable, shareable starting point. Oktob is a desktop app built by one owner with two AI coding agents (Claude Code and Codex) working GitHub issues in parallel. The template combines that setup with [Matt Pocock's skills](https://github.com/mattpocock/skills) (MIT), which cover alignment and planning.
+Capture the way of working that was set up for an earlier project (the "origin project") and generalize it into a reusable, shareable starting point. That project is a desktop app built by one owner with two AI coding agents (Claude Code and Codex) working GitHub issues in parallel. The template combines that setup with [Matt Pocock's skills](https://github.com/mattpocock/skills) (MIT), which cover alignment and planning.
 
-Audience: the owner's future projects, and other people who receive the link. The repository is public, MIT-licensed, and contains no Oktob or personal details.
+Audience: the owner's future projects, and other people who receive the link. The repository is public, MIT-licensed, and contains no details of the origin project or personal details.
 
 Success: someone can create a repository from the template (or adopt it in an existing repository), run `/project-setup`, and on the same day take an idea through grill → spec → tickets → parallel implementation → reviewed merge → retro.
 
@@ -30,7 +30,7 @@ Success: someone can create a repository from the template (or adopt it in an ex
 | Tools | Orca and the Codex GitHub review are optional | People without them can still use the workflow |
 | `AGENTS.md` | Lean: hard rules and pointers to `docs/agents/*.md` | Agent context is expensive; detail belongs in pointed-to docs |
 | Docs tooling | Generalized `docs.mjs` configured by `docs/docs.config.json` | No project-specific code paths in the shared tool |
-| Oktob | Unchanged | Migrating Oktob to the merged workflow is a separate decision |
+| Origin project | Unchanged | Migrating it to the merged workflow is a separate decision |
 
 ## Workflow
 
@@ -97,7 +97,7 @@ Placeholders use `{{NAME}}` and are listed in `template.config.json`, which also
 
 - `start.mjs <N> <claude|codex> [--force] [--dry-run]`: checks state, claim, blockers, conflicts and the schema lock; derives the branch `<user>/<prefix>-<nnn>-<slug>`; creates the worktree with Orca when `orca` is installed and enabled in `template.config.json`, otherwise with `git worktree add` beside the main checkout; launches the agent through Orca or prints the launch command; adds labels and a claim comment.
 - `setup-worktree.sh`: copies dependency folders listed in `scripts/issue/worktree-copy.txt` from the main checkout when lockfiles match, else runs the configured install command.
-- `wait-codex-review.mjs`: unchanged behavior from Oktob (findings, 👍 clean, nudge after 10 minutes, 45-minute timeout).
+- `wait-codex-review.mjs`: unchanged behavior from the origin project (findings, 👍 clean, nudge after 10 minutes, 45-minute timeout).
 - `finish.mjs <PR>`: squash-merge, delete remote branch, clear claim labels, fast-forward the main checkout, remove the worktree (Orca or `git worktree remove` plus branch delete).
 - `bootstrap-labels.mjs [--dry-run]`: idempotent create-or-update of labels.
 
@@ -106,12 +106,12 @@ Placeholders use `{{NAME}}` and are listed in `template.config.json`, which also
 - `node --test scripts/docs/docs.test.mjs` passes.
 - `node --check` passes for every script; `--dry-run` paths run against a real or fixture repository.
 - A scratch repository created from the template runs `/project-setup` end to end, then `docs:check` passes.
-- A grep finds no `Oktob`, `OKT-`, owner paths, or email addresses outside credits and this design record; a secret scan finds nothing.
+- A grep finds no origin-project names or IDs, owner paths, or email addresses outside credits and this design record; a secret scan finds nothing.
 - Then: create the public repository, mark it as a template, push.
 
 ## Out of scope
 
-- Migrating Oktob to this template.
+- Migrating the origin project to this template.
 - A Claude Code plugin or marketplace package.
 - CI workflows (the playbook explains how to add `docs:check` to CI later).
 - Linear, GitLab or Jira trackers beyond what Matt's setup skill supports.

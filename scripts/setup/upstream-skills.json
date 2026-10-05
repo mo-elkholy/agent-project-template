@@ -1,0 +1,5 @@
+{
+  "_comment": "Matt Pocock skills this template calls by name. scripts/setup/upstream.mjs checks they still exist upstream.",
+  "repo": "mattpocock/skills",
+  "skills": ["setup-matt-pocock-skills", "grill-with-docs", "grilling", "domain-modeling", "to-spec", "to-tickets", "tdd", "code-review", "codebase-design", "pr", "retro", "writing-for-agents", "triage", "improve-codebase-architecture", "wayfinder", "diagnosing-bugs", "prototype"]
+}
