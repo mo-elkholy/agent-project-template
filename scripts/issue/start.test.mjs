@@ -72,7 +72,7 @@ test("without Orca, creates a sibling git worktree, claims the issue and prints 
   assert.equal(result.worktree, wt);
   assert.equal(git(wt, "branch", "--show-current"), "me/acme-004-export-small-runs-csv");
   assert.equal(git(wt, "rev-parse", "HEAD"), git(main, "rev-parse", "origin/main"));
-  assert.match(result.launch, /claude ".*implement-issue/);
+  assert.match(result.launch, /claude '.*implement-issue/);
   assert(calls().some((c) => c.join(" ") === "issue edit 4 --add-label in progress --add-label agent: claude"));
   assert(calls().some((c) => c[0] === "issue" && c[1] === "comment" && c[2] === "4"));
 });
@@ -106,4 +106,13 @@ test("falls back to a git worktree when Orca is enabled but not running", (t) =>
   assert.equal(JSON.parse(r.out).kind, "git");
   assert.match(r.err, /Orca is not available \(Orca runtime is not reachable\); using a plain git worktree/);
   assert(fs.existsSync(path.join(tmp, "app-worktrees", "acme-004-export-small-runs-csv")));
+});
+
+test("the printed launch command cannot execute text from the issue title", (t) => {
+  const evil = issue(4, { title: "ACME-004: Fix `touch PWNED` and $(touch PWNED2)" });
+  const { tmp, start } = setup(t, { issues: { 4: evil } });
+  const plan = JSON.parse(start("4", "codex", "--dry-run").out);
+  const echoed = execFileSync("sh", ["-c", plan.launch.replace(/^cd .*? && codex /, "printf %s ")], { cwd: tmp, encoding: "utf8" });
+  assert.match(echoed, /Fix `touch PWNED` and \$\(touch PWNED2\)/);
+  assert(!fs.existsSync(path.join(tmp, "PWNED")) && !fs.existsSync(path.join(tmp, "PWNED2")));
 });

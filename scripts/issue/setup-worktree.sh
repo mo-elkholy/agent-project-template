@@ -13,6 +13,9 @@ install="$(cfg installCommand)"
 same_lock=false
 if [[ -n "$lockfile" && -f "$main/$lockfile" ]] && cmp -s "$main/$lockfile" "$lockfile"; then same_lock=true; fi
 need_install=false
+copy_list="$(cfg worktreeCopy)"
+# Nothing listed to copy means dependencies must come from the install command.
+[[ -z "$copy_list" ]] && need_install=true
 while IFS= read -r dir; do
   [[ -z "$dir" || -e "$dir" ]] && continue
   if $same_lock && [[ -d "$main/$dir" ]]; then
@@ -22,7 +25,7 @@ while IFS= read -r dir; do
   else
     need_install=true
   fi
-done < <(cfg worktreeCopy)
+done <<< "$copy_list"
 if $need_install && [[ -n "$install" ]]; then
   echo "Lockfile differs from the main checkout (or nothing to copy); running: $install"
   eval "$install"

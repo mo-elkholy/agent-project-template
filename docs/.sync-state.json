@@ -2,59 +2,59 @@
   "version": 1,
   "documents": {
     "docs/SPEC.md": {
-      "document": "3a526c1c0b93c7cc8964d136fb4474054463311b9f43bf2323dc5aa3e63a5578",
+      "document": "9e18f4edec191821643f56f3911eaa83e7c6cb7a53ff16d2829f931a830e2230",
       "inputs": {
-        "scripts/docs/docs.mjs": "576c7efd9b833fcd9de661205d811d5a689cbeeb477b64698f721803774dacc4",
+        "scripts/docs/docs.mjs": "d9e9f4550a084788cbc0c8b64f2ed6195760763f5d5e675f91230448b2c83692",
         "docs/docs.config.json": "6cae28d4f7672f2514e9ac0fd99b808c5f3f0fd9fd6b430a57e61b68fc24fdca"
       },
-      "reviewed_at": "2026-10-05T20:05:12.610Z",
+      "reviewed_at": "2026-10-05T20:18:46.863Z",
       "by": "claude/opus-5.5",
-      "note": "Docs tool gained an ignore list for files other tools own; documented in the profile and the sync guide."
+      "note": "Documented folder ignores, refusal to overwrite hand-written indexes, and Git-aware fingerprints added after the final review."
     },
     "docs/documentation-sync.md": {
-      "document": "6160bc7e752271efc350ea6533588938da8997efff1349a942cc8c4eb47c470c",
+      "document": "87be09b1b606b199c97a3cee6d723619cda3b35b4d632ac4344064d38b767c91",
       "inputs": {
-        "scripts/docs": "166d4f8da2852dfcba15d93d69eecc102a1dc9c1f5bd5bc7f364159cb557e34f",
+        "scripts/docs": "c2db9a6abc34ae9bb4a64e1cff24bceb88e9db7c3fddddd201b1af47dfc000c7",
         "docs/docs.config.json": "6cae28d4f7672f2514e9ac0fd99b808c5f3f0fd9fd6b430a57e61b68fc24fdca",
-        "package.json": "0f230d32dd623a368f210c6b97f33bb80df36c2cd5cd74dd67b97770d44ac808",
+        "package.json": "f4910d2085f9a5bd91b0af9163cdd07d6b773ccf48ff1fd9d8873ad1aef2cf7a",
         "AGENTS.md": "7d7d01a413601559c96cdd9354fcf8830f6241abd0a422000456b8499e0dc1a1"
       },
-      "reviewed_at": "2026-10-05T20:05:12.613Z",
+      "reviewed_at": "2026-10-05T20:18:46.862Z",
       "by": "claude/opus-5.5",
-      "note": "Docs tool gained an ignore list for files other tools own; documented in the profile and the sync guide."
+      "note": "Documented folder ignores, refusal to overwrite hand-written indexes, and Git-aware fingerprints added after the final review."
     },
     "docs/agents/verification.md": {
       "document": "776ae8e0de0b02954bc2d3df4c8c4df332ff4eb5746e5b9f1edb1a34446ced33",
       "inputs": {
-        "package.json": "0f230d32dd623a368f210c6b97f33bb80df36c2cd5cd74dd67b97770d44ac808"
+        "package.json": "f4910d2085f9a5bd91b0af9163cdd07d6b773ccf48ff1fd9d8873ad1aef2cf7a"
       },
-      "reviewed_at": "2026-10-05T19:49:29.922Z",
+      "reviewed_at": "2026-10-05T20:18:46.210Z",
       "by": "claude/opus-5.5",
-      "note": "Wrote generalized agent rules; parallel-work edges match scripts/issue/lib.mjs (blocked-by vs conflicts, schema lock, closed/claimed never forced). Skills and playbook referenced here are completed in later steps."
+      "note": "package.json test:tools now runs scripts/test.mjs (works on Node 20 and 22+); command name in the verification table unchanged; policy unchanged."
     },
     "docs/agents/parallel-work.md": {
       "document": "af3d042e2fa114cd2ea01d89ede1c24bb4e2e5776f396926404f0af71a13724f",
       "inputs": {
-        "scripts/issue": "672926e8a49e9e49698a0d9d108850a36b60e9d98ccb30a59b5187261b9cdd27"
+        "scripts/issue": "de67d70613b5849de0e89d5ba5201324dfc1612ab3a9421f79585f26f586ef77"
       },
-      "reviewed_at": "2026-10-05T20:05:12.097Z",
+      "reviewed_at": "2026-10-05T20:18:45.583Z",
       "by": "claude/opus-5.5",
-      "note": "start.mjs Orca fallback and test helper changed; claim, blocker, conflict and schema rules unchanged."
+      "note": "Script changes were safety fixes (quoting, finish checks, setup-worktree install fallback); parallel-work rules unchanged."
     },
     "docs/agents/lifecycle.md": {
-      "document": "1464e74b4956dcb33617ff0e805463d9104de1c29a2697c80808e7bb004f6840",
+      "document": "7222d0d94603f33dceb99f97f5cea23df34c934c77fd06f3be1ab771b4f0a82a",
       "inputs": {
-        ".agents/skills/project-setup": "241f6f095e5080c356a65d88edb7f563cab508919632765ea0ceea6c9412416b",
+        ".agents/skills/project-setup": "9039afd8003ab3190f688c39e5caa62ba07889a45d03ae250ad107bedd0ca509",
         ".agents/skills/new-issue": "de8a137e9e55bce9570ba7171b1a9471d63c000c79e25acc334c386fdb1f5635",
         ".agents/skills/start-issue": "23baea63f9487ce93f3e7f6f1cf07f49b252feed9df7cbdb8fd9ed78f51b6ef0",
         ".agents/skills/implement-issue": "64a2f6a9e5c839c410713e1345ea584298996db3733ead11ca6f93f30d29bef4",
         ".agents/skills/retro-to-docs": "596435c83956d373489e418455eb206f4a4ffc96adef790c4d4b4a6addc95bbc",
-        "scripts/issue": "672926e8a49e9e49698a0d9d108850a36b60e9d98ccb30a59b5187261b9cdd27",
+        "scripts/issue": "de67d70613b5849de0e89d5ba5201324dfc1612ab3a9421f79585f26f586ef77",
         "template.config.json": "2a0c13783cc84538db293b389f38ecec1fef79c95eb30485486b2ed428dd2623"
       },
-      "reviewed_at": "2026-10-05T20:05:11.574Z",
+      "reviewed_at": "2026-10-05T20:18:44.932Z",
       "by": "claude/opus-5.5",
-      "note": "start.mjs now falls back to git when Orca is unavailable; worktree paragraph updated to list every fallback reason."
+      "note": "finish.mjs now refuses foreign, dirty or unpushed PRs and pins the merge to the PR head; step 7 updated. start.mjs launch command now single-quoted; no prose change needed."
     },
     "docs/agents/review-risks.md": {
       "document": "f55f948be173066247bdfdfce33629381a6b40c5cd3cf2484975af7e912d22d0",
@@ -68,11 +68,11 @@
     "docs/agents/dependencies.md": {
       "document": "23eaf7a6aaa050a2837508ee7136f539a8f54379db933fdc02010cbd4c8e7815",
       "inputs": {
-        "package.json": "0f230d32dd623a368f210c6b97f33bb80df36c2cd5cd74dd67b97770d44ac808"
+        "package.json": "f4910d2085f9a5bd91b0af9163cdd07d6b773ccf48ff1fd9d8873ad1aef2cf7a"
       },
-      "reviewed_at": "2026-10-05T19:49:29.927Z",
+      "reviewed_at": "2026-10-05T20:18:46.209Z",
       "by": "claude/opus-5.5",
-      "note": "Wrote generalized agent rules; parallel-work edges match scripts/issue/lib.mjs (blocked-by vs conflicts, schema lock, closed/claimed never forced). Skills and playbook referenced here are completed in later steps."
+      "note": "package.json test:tools now runs scripts/test.mjs (works on Node 20 and 22+); command name in the verification table unchanged; policy unchanged."
     },
     "docs/issue-register.md": {
       "document": "266749155ef8bee4089c1229ed610ebded7b4d9c0904ec2de3a45b54cbad0d8a",

@@ -366,12 +366,19 @@ Created by `node scripts/github/bootstrap-labels.mjs` from `scripts/github/label
 
 ## 12. Adopting in an existing repository
 
+The rule: **nothing of yours is overwritten.** Files you already have are copied in beside yours under a `.template.md` name, and `/project-setup` merges them.
+
 1. Create a branch: `git checkout -b chore/agent-workflow`.
-2. Copy in the template's files: `AGENTS.md` (if you have none), `.agents/`, `.github/ISSUE_TEMPLATE/ticket.md` and `pull_request_template.md`, `scripts/`, `docs/` (merge with an existing `docs/` folder), `template.config.json`, `GLOSSARY.md`, `changelog.md` (if you have none), `PLAYBOOK.md`, `NOTICE`. Add the `docs:*` and `test:tools` scripts and the `js-yaml` dependency to your `package.json` (create a tools-only one if your project is not Node).
-3. Create the links: `ln -s AGENTS.md CLAUDE.md` (only if `CLAUDE.md` does not exist yet; otherwise let `/project-setup` merge them) and `mkdir -p .claude && ln -s ../.agents/skills .claude/skills`.
-4. Run `/project-setup`. It detects an existing project, merges your agent rules instead of replacing them, recommends `--create-only` for labels, and adds your real source folders to the docs tool's tracked roots.
-5. Backfill the register only for open work you want tracked: create issues with `/new-issue` (or mirror existing issues by adding IDs to their titles and rows to the register). Do not invent history.
-6. Open a PR for the setup itself and merge it the usual way.
+2. Copy in what you do not have: `.agents/`, `scripts/`, `docs/agents/`, `docs/references/`, `docs/SPEC.md`, `docs/documentation-sync.md`, `docs/issue-register.md`, `docs/docs.config.json`, `docs/log.md`, `.github/ISSUE_TEMPLATE/ticket.md`, `template.config.json`, `GLOSSARY.md`, `PLAYBOOK.md`, `NOTICE`.
+3. For files you may already have, copy the template's version beside yours: `AGENTS.template.md`, `changelog.template.md`, `.github/pull_request_template.template.md`. If you do not have the original, use the normal name instead. Never copy the template's `README.md`, `LICENSE` or `docs/index.md` over yours.
+4. Add the `docs:*` and `test:tools` scripts and the `js-yaml` dependency to your `package.json` (create a tools-only one if your project is not Node).
+5. Run `/project-setup`. For an existing project it:
+   - merges `AGENTS.template.md` into your `AGENTS.md` (or into your `CLAUDE.md` content, which moves to `AGENTS.md` with `CLAUDE.md` becoming a link, after showing you), keeping every rule you had, then deletes the `.template.md` copies;
+   - adds your existing documentation folders to `ignore` in `docs/docs.config.json` (for example `"docs/guides/"`), so files without OKF frontmatter and hand-written `index.md` pages are left alone. `docs:sync` also refuses to overwrite any `index.md` it did not generate;
+   - recommends `--create-only` for labels;
+   - adds your real source folders to the docs tool's tracked roots.
+6. Backfill the register only for open work you want tracked: create issues with `/new-issue` (or mirror existing issues by adding IDs to their titles and rows to the register). Do not invent history.
+7. Open a PR for the setup itself and merge it the usual way.
 
 ---
 

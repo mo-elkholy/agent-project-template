@@ -23,7 +23,7 @@ Our skills live in `.agents/skills/` (`.claude/skills` links to the same folder,
 | | **Stop 1** | | Report readiness. **The user authorizes creating the PR** |
 | 6 | PR and review | (inside `/implement-issue`) | PR body: summary, evidence, review outcome, merge danger, `Closes #N`. Optional Codex GitHub review via `scripts/issue/wait-codex-review.mjs` |
 | | **Stop 2** | | Report reviews done. **The user authorizes the merge** |
-| 7 | Merge and clean up | `node scripts/issue/finish.mjs <PR>` | Squash-merge, clear the claim, update the main checkout, remove the worktree and branch |
+| 7 | Merge and clean up | `node scripts/issue/finish.mjs <PR>` | Run from the PR's own worktree. Refuses unless the checked-out branch is the PR's, nothing is uncommitted and the local HEAD is the PR head; then squash-merges (pinned to that commit), clears the claim, updates the main checkout and removes the worktree and branch |
 | 8 | Improve | `/retro`, then `/retro-to-docs` | Turn accepted retro findings into checks, rules or issues |
 
 Never create a PR or merge without the user's explicit authorization **for that issue**. Approval for one issue does not carry over to the next. If branch protection is not enforced on the repository, these two stops are the only gate.

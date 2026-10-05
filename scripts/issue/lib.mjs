@@ -63,3 +63,18 @@ export function planWorktree({ useOrca, mainPath, name, branch, base }) {
     commands: [["git", "-C", mainPath, "worktree", "add", "-b", branch, target, base]],
   };
 }
+
+// finish.mjs merges and deletes, so it only acts on the PR whose branch is
+// checked out here, with nothing uncommitted and nothing unpushed.
+export function finishProblems({ currentBranch, headRefName, dirty, localHead, prHead }) {
+  const problems = [];
+  if (currentBranch !== headRefName)
+    problems.push(`PR belongs to branch ${headRefName}, but this worktree is on ${currentBranch}. Run finish.mjs from the PR's own worktree.`);
+  if (dirty) problems.push("This worktree has uncommitted changes; commit or stash them first.");
+  if (localHead !== prHead)
+    problems.push(`local HEAD ${localHead} does not match the PR head ${prHead}; push or pull first.`);
+  return problems;
+}
+
+// Single-quote for POSIX shells: nothing inside expands.
+export const shellQuote = (text) => `'${String(text).replace(/'/g, "'\\''")}'`;

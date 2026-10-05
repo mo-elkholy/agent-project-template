@@ -38,7 +38,7 @@ There is no bulk `--all` acknowledgment. Name documents and give a real reason. 
 | `npm run docs:ack -- <docs...> --by <actor> --note <reason>` | Records current fingerprints for the named documents after review; does not add OKF `verified` status |
 | `npm run test:tools` | Runs the isolated fixtures for the docs tool and the workflow scripts |
 
-Markdown files listed under `ignore` in `docs/docs.config.json` are skipped; use it only for files another tool writes. Fingerprints include uncommitted and untracked files, so the check works before the first commit. Adding or deleting a file inside a tracked directory triggers review. Broken local links are errors in this project even though OKF tolerates them; the pinned upstream reference is exempt because its hash covers it. Heading fragments and external URLs are not checked.
+Entries under `ignore` in `docs/docs.config.json` are skipped: exact files (for files another tool writes) or folders ending in `/` (for an existing documentation tree that does not follow this profile). `docs:sync` never overwrites an `index.md` it did not generate. In a Git repository, fingerprints use Git's view of a tracked folder (committed and untracked files, minus anything ignored), so caches, build output and editor files never cause drift. Fingerprints include uncommitted and untracked files, so the check works before the first commit. Adding or deleting a file inside a tracked directory triggers review. Broken local links are errors in this project even though OKF tolerates them; the pinned upstream reference is exempt because its hash covers it. Heading fragments and external URLs are not checked.
 
 ## Scope
 

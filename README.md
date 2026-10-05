@@ -73,7 +73,15 @@ If Orca is not running or the repository is not registered, `start.mjs` says so 
 
 ## Adopting it in an existing repository
 
-Copy the template's files into your repository (`AGENTS.md`, `CLAUDE.md` link, `.agents/`, `.claude/`, `.github/`, `scripts/`, `docs/`, `template.config.json`, `GLOSSARY.md`, `changelog.md`, `PLAYBOOK.md`, and the `package.json` scripts and dependency), then run `/project-setup`. It merges with your existing `AGENTS.md` or `CLAUDE.md` instead of overwriting them, and can create labels without touching existing ones. See [PLAYBOOK §12](PLAYBOOK.md#12-adopting-in-an-existing-repository).
+Nothing of yours gets overwritten. Copy the template in on a branch, renaming any file you already have, then let `/project-setup` merge:
+
+1. `git checkout -b chore/agent-workflow`
+2. Copy `.agents/`, `scripts/`, `docs/agents/`, `docs/references/`, `docs/SPEC.md`, `docs/documentation-sync.md`, `docs/issue-register.md`, `docs/docs.config.json`, `docs/log.md`, `.github/ISSUE_TEMPLATE/ticket.md`, `template.config.json`, `GLOSSARY.md`, `PLAYBOOK.md` and `NOTICE`.
+3. Files you may already have: copy the template's version **beside** yours as `AGENTS.template.md`, `changelog.template.md` and `.github/pull_request_template.template.md` (or under the normal name if you have none). Do not copy the template's `README.md`, `LICENSE` or `docs/index.md`.
+4. Add the `docs:*` and `test:tools` scripts and the `js-yaml` dependency to your `package.json` (or create a tools-only one if your project is not Node).
+5. Run `/project-setup`. It merges the `*.template.md` files into yours and deletes them, links `CLAUDE.md`, keeps your existing docs out of the drift check (`ignore`), and can create labels without touching existing ones.
+
+Details: [PLAYBOOK §12](PLAYBOOK.md#12-adopting-in-an-existing-repository).
 
 ## What's inside
 

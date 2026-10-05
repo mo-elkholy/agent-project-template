@@ -1,5 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import { parseEdges, startProblems, branchName, planWorktree } from "./lib.mjs";
 
 test("parseEdges returns empty sets when an issue has no edge lines", () => {
@@ -54,4 +55,22 @@ test("planWorktree falls back to plain git worktrees beside the main checkout", 
   assert.equal(p.path, "/w/app-worktrees/acme-012-x");
   assert.deepEqual(p.commands[0], ["git", "-C", "/w/app", "worktree", "add", "-b", "me/acme-012-x", "/w/app-worktrees/acme-012-x", "origin/main"]);
   assert.equal(planWorktree({ useOrca: true, mainPath: "/w/app", name: "n", branch: "b", base: "origin/main" }).kind, "orca");
+});
+
+import { finishProblems, shellQuote } from "./lib.mjs";
+
+test("finishProblems refuses a PR that does not belong to this worktree", () => {
+  const ok = { currentBranch: "me/acme-014-x", headRefName: "me/acme-014-x", dirty: false, localHead: "abc", prHead: "abc" };
+  assert.deepEqual(finishProblems(ok), []);
+  assert.match(finishProblems({ ...ok, headRefName: "me/acme-016-y" })[0], /belongs to branch me\/acme-016-y/);
+  assert.match(finishProblems({ ...ok, dirty: true })[0], /uncommitted changes/);
+  assert.match(finishProblems({ ...ok, localHead: "def" })[0], /local HEAD def does not match the PR head abc/);
+});
+
+test("shellQuote makes untrusted text inert in a POSIX shell", () => {
+  assert.equal(shellQuote("plain"), "'plain'");
+  assert.equal(shellQuote("it's"), "'it'\\''s'");
+  const nasty = "Fix `whoami` and $(echo INJECTED) $HOME";
+  const out = execFileSync("sh", ["-c", `printf %s ${shellQuote(nasty)}`], { encoding: "utf8" });
+  assert.equal(out, nasty);
 });

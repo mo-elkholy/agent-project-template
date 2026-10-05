@@ -5,10 +5,11 @@
 // last step; removing the worktree ends the session that runs in it.
 // Usage: node scripts/issue/finish.mjs <pr>
 import { run, hasCommand, mainCheckout, loadConfig } from "../config.mjs";
+import { finishProblems } from "./lib.mjs";
 
 const pr = process.argv[2];
 if (!/^\d+$/.test(pr ?? "")) { console.error("Usage: finish.mjs <pr>"); process.exit(2); }
-const info = JSON.parse(run("gh", ["pr", "view", pr, "--json", "state,mergeable,headRefName,closingIssuesReferences,url"]));
+const info = JSON.parse(run("gh", ["pr", "view", pr, "--json", "state,mergeable,headRefName,headRefOid,closingIssuesReferences,url"]));
 if (info.state !== "OPEN") { console.error(`PR #${pr} is ${info.state}.`); process.exit(1); }
 if (info.mergeable === "CONFLICTING") { console.error(`PR #${pr} has merge conflicts; rebase first.`); process.exit(1); }
 
@@ -16,7 +17,17 @@ const main = mainCheckout();
 const config = loadConfig(main);
 const defaultBranch = config.defaultBranch ?? "main";
 
-run("gh", ["pr", "merge", pr, "--squash", "--delete-branch=false"]);
+const problems = finishProblems({
+  currentBranch: run("git", ["branch", "--show-current"]),
+  headRefName: info.headRefName,
+  dirty: Boolean(run("git", ["status", "--porcelain"])),
+  localHead: run("git", ["rev-parse", "HEAD"]),
+  prHead: info.headRefOid,
+});
+if (problems.length) { console.error(`Not merged: ${problems.join(" ")}`); process.exit(1); }
+
+// --match-head-commit: GitHub refuses if anyone pushed after this check.
+run("gh", ["pr", "merge", pr, "--squash", "--delete-branch=false", "--match-head-commit", info.headRefOid]);
 try { run("git", ["push", "origin", "--delete", info.headRefName]); } catch { console.error(`Remote branch ${info.headRefName} was already deleted.`); }
 for (const i of info.closingIssuesReferences ?? []) {
   try { run("gh", ["issue", "edit", String(i.number), "--remove-label", "in progress", "--remove-label", "agent: claude", "--remove-label", "agent: codex"]); } catch {}

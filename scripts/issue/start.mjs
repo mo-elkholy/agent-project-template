@@ -5,7 +5,7 @@
 // the agent command; record the claim on the issue.
 // Usage: node scripts/issue/start.mjs <issue-number> <claude|codex> [--force] [--dry-run]
 import { loadConfig, run, hasCommand, mainCheckout } from "../config.mjs";
-import { parseEdges, startProblems, branchName, planWorktree } from "./lib.mjs";
+import { parseEdges, startProblems, branchName, planWorktree, shellQuote } from "./lib.mjs";
 
 const [num, agent, ...rest] = process.argv.slice(2);
 const force = rest.includes("--force");
@@ -70,7 +70,7 @@ const orcaArgs = useOrca ? [
   "--base-branch", base, "--issue", num, "--agent", agent, "--prompt", prompt,
   "--setup", "skip", "--comment", `#${num}: ${agent} implementing`, "--activate", "--json",
 ] : null;
-const launch = `cd ${JSON.stringify(plan.path ?? "<worktree>")} && ${agent} ${JSON.stringify(prompt)}`;
+const launch = `cd ${shellQuote(plan.path ?? "<worktree>")} && ${agent} ${shellQuote(prompt)}`;
 
 if (dryRun) {
   console.log(JSON.stringify({ dryRun: true, issue: Number(num), agent, branch, overlaps: problems, kind: plan.kind,
