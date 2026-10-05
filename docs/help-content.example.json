@@ -1,0 +1,17 @@
+{
+  "updated": "2026-10-05",
+  "owner": "{{DOC_OWNER}}",
+  "languages": [
+    { "code": "en", "dir": "ltr", "title": "{{PROJECT_NAME}} user manual", "description": "How to use {{PROJECT_NAME}}, generated from in-app Help." },
+    { "code": "xx", "dir": "ltr", "title": "{{PROJECT_NAME}} manual (second language)", "description": "Replace xx with a real language code and translate every field.", "relatedLabel": "Related" }
+  ],
+  "topics": [
+    {
+      "id": "getting-started",
+      "title": { "en": "Getting started", "xx": "Getting started (translate)" },
+      "hint": { "en": "What this part of the product is for, in one sentence.", "xx": "Translate the hint." },
+      "steps": { "en": ["First step the user takes.", "Second step."], "xx": ["Translate step one.", "Translate step two."] },
+      "related": []
+    }
+  ]
+}
