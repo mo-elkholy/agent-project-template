@@ -63,7 +63,10 @@ function readDoc(root, relative) {
 function concepts(root) {
   return files(root, "docs")
     .filter(
-      (file) => file.endsWith(".md") && !reserved.has(path.basename(file)),
+      (file) =>
+        file.endsWith(".md") &&
+        !reserved.has(path.basename(file)) &&
+        !(config.ignore ?? []).includes(file),
     )
     .map((file) => readDoc(root, file));
 }

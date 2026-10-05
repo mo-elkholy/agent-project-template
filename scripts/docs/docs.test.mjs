@@ -270,3 +270,15 @@ test("config describes subdirectories in the root index", (t) => {
   assert.deepEqual(runDocs(root, "sync").errors, []);
   assert.match(fs.readFileSync(path.join(root, "docs/index.md"), "utf8"), /^- \[guides\]\(guides\/index.md\) - How-to guides\.$/m);
 });
+
+test("config ignore list skips files owned by other tools", (t) => {
+  const root = fixture(t);
+  fs.writeFileSync(
+    path.join(root, "docs/docs.config.json"),
+    JSON.stringify({ trackRoots: ["src"], ignore: ["docs/agents/issue-tracker.md"] }),
+  );
+  fs.mkdirSync(path.join(root, "docs/agents"));
+  fs.writeFileSync(path.join(root, "docs/agents/issue-tracker.md"), "# Issue tracker: GitHub\n");
+  write(root);
+  clean(root);
+});

@@ -5,13 +5,13 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const git = (cwd, ...args) => execFileSync("git", args, { cwd, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }).trim();
 
-function setup(t, { issues, inProgress = [] }) {
+function setup(t, { issues, inProgress = [], orca = false, orcaStub = null }) {
   const tmp = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), "start-")));
   t.after(() => fs.rmSync(tmp, { recursive: true, force: true }));
   const origin = path.join(tmp, "origin.git");
@@ -22,7 +22,7 @@ function setup(t, { issues, inProgress = [] }) {
   fs.mkdirSync(path.join(main, "scripts"), { recursive: true });
   fs.cpSync(path.join(here, ".."), path.join(main, "scripts"), { recursive: true });
   fs.writeFileSync(path.join(main, "template.config.json"), JSON.stringify({
-    configured: true, idPrefix: "ACME", branchPrefix: "me", defaultBranch: "main", orca: false,
+    configured: true, idPrefix: "ACME", branchPrefix: "me", defaultBranch: "main", orca,
   }));
   git(main, "add", "-A");
   git(main, "-c", "user.name=t", "-c", "user.email=t@example.invalid", "commit", "-qm", "init");
@@ -44,11 +44,11 @@ if (args[0] === "repo") { process.stdout.write(JSON.stringify({ nameWithOwner: "
 if (args[0] === "api") { process.stderr.write("dependencies not enabled"); process.exit(1); }
 process.exit(0);
 `, { mode: 0o755 });
+  if (orcaStub) fs.writeFileSync(path.join(bin, "orca"), orcaStub, { mode: 0o755 });
   const env = { ...process.env, PATH: `${bin}:${process.env.PATH}` };
   const start = (...args) => {
-    try {
-      return { code: 0, out: execFileSync("node", ["scripts/issue/start.mjs", ...args], { cwd: main, env, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }) };
-    } catch (e) { return { code: e.status, out: String(e.stdout), err: String(e.stderr) }; }
+    const r = spawnSync("node", ["scripts/issue/start.mjs", ...args], { cwd: main, env, encoding: "utf8" });
+    return { code: r.status, out: r.stdout, err: r.stderr };
   };
   const calls = () => (fs.existsSync(log) ? fs.readFileSync(log, "utf8").trim().split("\n").map((l) => JSON.parse(l)) : []);
   return { tmp, main, start, calls };
@@ -93,4 +93,17 @@ test("--force cannot override an already claimed issue", (t) => {
   const r = start("6", "claude", "--force");
   assert.equal(r.code, 1);
   assert.match(r.err, /already claimed/);
+});
+
+test("falls back to a git worktree when Orca is enabled but not running", (t) => {
+  const { tmp, start } = setup(t, {
+    issues: { 4: issue(4) },
+    orca: true,
+    orcaStub: "#!/bin/sh\necho 'Orca runtime is not reachable' >&2\nexit 1\n",
+  });
+  const r = start("4", "claude");
+  assert.equal(r.code, 0, r.err);
+  assert.equal(JSON.parse(r.out).kind, "git");
+  assert.match(r.err, /Orca is not available \(Orca runtime is not reachable\); using a plain git worktree/);
+  assert(fs.existsSync(path.join(tmp, "app-worktrees", "acme-004-export-small-runs-csv")));
 });

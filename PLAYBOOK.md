@@ -56,6 +56,23 @@ Five ideas carry the whole method. Every rule later in this guide serves one of 
 
 You can use only one agent. Everything works with Claude alone or Codex alone; the parallel rules simply matter less.
 
+### Orca (optional)
+
+Orca runs each issue in its own worktree with its own agent terminal, and shows them side by side. The scripts use it when `"orca": true` in `template.config.json` and the `orca` command is installed; otherwise they fall back to plain git worktrees.
+
+1. Install Orca, then `orca open` and `orca status` to confirm the runtime is reachable.
+2. Sign in Claude and/or Codex (`orca account add`, or in the app).
+3. Register the repository: `orca repo add --path <repo>`; confirm with `orca repo list`. `start.mjs` matches the registered path to your main checkout.
+4. Optional: `orca skills install` adds Orca's CLI skill so agents can update their workspace card (`orca worktree set --worktree active --comment "<status>"`), which `/implement-issue` does at each checkpoint.
+
+What changes with Orca on:
+
+| Step | With Orca | Without Orca |
+| --- | --- | --- |
+| `/start-issue` | `orca worktree create … --issue N --agent claude --prompt …` creates a linked workspace and launches the agent | `git worktree add` in `<repo>-worktrees/<name>`; you start the agent with the printed command |
+| Watching progress | Orca sidebar or `orca worktree ps` | Your terminals; `git worktree list` |
+| Finishing | `finish.mjs` runs `orca worktree rm`, which also deletes the local branch | `finish.mjs` runs `git worktree remove` and deletes the branch |
+
 ### Matt Pocock's skills
 
 The alignment and planning half of this method comes from [Matt Pocock's skills](https://github.com/mattpocock/skills). They are **installed, not copied**, so you receive his improvements. Pick one installation route; installing both gives you every skill twice.
@@ -366,7 +383,9 @@ Created by `node scripts/github/bootstrap-labels.mjs` from `scripts/github/label
 | `Not started: blocked by open issue #n` | Finish or close the blocker first. `--force` only if you decide the dependency is not real |
 | `Not started: conflicts with in-progress #n` | Wait for #n, or approve the overlap and pass `--force`; rebase carefully afterwards |
 | `Orca is enabled … but not installed; using a plain git worktree` | Expected without Orca. Set `"orca": false` in `template.config.json` to silence it |
-| `Orca has no repo registered at …` | Add the repository in Orca, or set `"orca": false` |
+| `Orca has no repo registered at …` | `orca repo add --path <main checkout>`, or set `"orca": false` |
+| `Orca is not available (…); using a plain git worktree` | Orca is not running: `orca open`, then check `orca status`. The issue already started in a git worktree; that is fine |
+| Label dry run says `No repository access` | The repository has no GitHub remote yet: `gh repo create <owner>/<name> --private --source . --push`, then rerun |
 | Worktree setup is slow | Lockfiles differ from the main checkout, so it runs the install command. Pull `main` in the main checkout first |
 | Codex waiter returns `timeout` | The Codex GitHub app is not reviewing this repository. Enable it, or set `"codexReview": false` |
 | `index is stale; run npm run docs:sync` | Run it; commit the regenerated indexes |

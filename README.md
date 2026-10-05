@@ -46,6 +46,31 @@ Read [PLAYBOOK.md](PLAYBOOK.md) for the full guide: every step, why it exists, a
 4. In Claude Code or Codex, run `/project-setup`. It asks for your project name, ID prefix, commands, areas and modules, creates the GitHub labels, and runs Matt's setup.
 5. Start your first feature with `/grill-with-docs`.
 
+## Using it with Orca
+
+[Orca](https://github.com/stablyai/orca) is a desktop app for running a fleet of coding agents, each in its own git worktree. With Orca, `/start-issue` opens a new Orca workspace for the issue and launches Claude or Codex inside it, so you can watch every agent from one window. Without Orca, everything still works: the scripts create plain `git worktree` folders and print the command to start the agent yourself.
+
+**One-time setup**
+
+1. Install Orca and open it once (`orca open` starts it from the terminal). Check `orca status`.
+2. Sign in the agents you will use, in Orca or with `orca account add`.
+3. Register your repository: `orca repo add --path /path/to/your/repo`, then `orca repo list` to confirm.
+4. Make sure `"orca": true` is set in `template.config.json` (`/project-setup` asks).
+5. Optional: `orca skills install` gives your agents Orca's own CLI skill, so they can read terminals and update their workspace cards.
+
+**Daily use**
+
+| You want to | Do this |
+| --- | --- |
+| Start an issue | In your main checkout, ask the agent: "work on issue 14 with claude" (runs `/start-issue 14 claude`). Orca creates the workspace `acme-014-…` from `origin/main`, links it to issue #14 and launches Claude in it with the implementation instructions |
+| Run two issues at once | Start another, e.g. "work on issue 16 with codex". The script refuses if the two conflict or one blocks the other |
+| See what every agent is doing | The Orca sidebar, or `orca worktree ps` in a terminal. Each workspace card shows the agent's latest status comment |
+| Answer an agent's question or approve a stop | Open that workspace in Orca and reply in its terminal ("yes, create the PR", "yes, merge") |
+| Finish | After you approve the merge, the agent runs `finish.mjs`: it merges, then removes the Orca workspace and its branch |
+| Stop an issue early | Tell the agent to stop; it removes its claim. Remove the workspace in Orca when you no longer need it |
+
+If Orca is not running or the repository is not registered, `start.mjs` says so and falls back to a plain git worktree.
+
 ## Adopting it in an existing repository
 
 Copy the template's files into your repository (`AGENTS.md`, `CLAUDE.md` link, `.agents/`, `.claude/`, `.github/`, `scripts/`, `docs/`, `template.config.json`, `GLOSSARY.md`, `changelog.md`, `PLAYBOOK.md`, and the `package.json` scripts and dependency), then run `/project-setup`. It merges with your existing `AGENTS.md` or `CLAUDE.md` instead of overwriting them, and can create labels without touching existing ones. See [PLAYBOOK §12](PLAYBOOK.md#12-adopting-in-an-existing-repository).
@@ -71,7 +96,7 @@ Copy the template's files into your repository (`AGENTS.md`, `CLAUDE.md` link, `
 - Git and the [GitHub CLI](https://cli.github.com/) (`gh auth login`)
 - Node.js 20 or later (for the workflow scripts only)
 - [Claude Code](https://claude.com/claude-code) and/or [Codex](https://github.com/openai/codex)
-- Optional: [Orca](https://github.com/stablyai/orca) for managed worktrees; the [Codex GitHub app](https://chatgpt.com/codex) for automated PR review
+- Optional: [Orca](https://github.com/stablyai/orca) for managed worktrees (see [Using it with Orca](#using-it-with-orca)); the [Codex GitHub app](https://chatgpt.com/codex) for automated PR review
 
 ## Credits and license
 

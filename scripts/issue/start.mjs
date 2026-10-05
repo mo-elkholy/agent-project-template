@@ -55,8 +55,13 @@ const prompt = [
 let useOrca = Boolean(config.orca) && hasCommand("orca");
 let orcaRepo = null;
 if (useOrca) {
-  orcaRepo = JSON.parse(run("orca", ["repo", "list", "--json"])).result.repos.find((r) => r.path === main);
-  if (!orcaRepo) { console.error(`Orca has no repo registered at ${main}; using a plain git worktree.`); useOrca = false; }
+  try {
+    orcaRepo = JSON.parse(run("orca", ["repo", "list", "--json"], { stdio: ["ignore", "pipe", "pipe"] })).result.repos.find((r) => r.path === main);
+    if (!orcaRepo) { console.error(`Orca has no repo registered at ${main} (orca repo add --path ${main}); using a plain git worktree.`); useOrca = false; }
+  } catch (error) {
+    console.error(`Orca is not available (${String(error.stderr || error.message).trim()}); using a plain git worktree. Start it with: orca open`);
+    useOrca = false;
+  }
 } else if (config.orca) console.error("Orca is enabled in template.config.json but not installed; using a plain git worktree.");
 
 const plan = planWorktree({ useOrca, mainPath: main, name, branch, base });

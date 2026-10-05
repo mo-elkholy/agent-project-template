@@ -33,8 +33,13 @@
     "deprecated"
   ],
   "directories": {
-    "agents": "Rules agents follow in this repository: verification, parallel work, lifecycle, review risks, dependencies.",
+    "agents": "Rules agents follow in this repository: verification, parallel work, lifecycle, review risks, dependencies. Matt Pocock's setup adds issue-tracker, triage-labels and domain files here.",
     "references": "Pinned upstream references and their licenses.",
     "adr": "Architecture decision records."
-  }
+  },
+  "ignore": [
+    "docs/agents/issue-tracker.md",
+    "docs/agents/triage-labels.md",
+    "docs/agents/domain.md"
+  ]
 }

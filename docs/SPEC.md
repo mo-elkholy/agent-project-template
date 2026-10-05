@@ -22,7 +22,7 @@ OKF is a representation format, not a synchronization service. This project adds
 
 Every concept Markdown file under `docs/` has YAML frontmatter. `index.md` and `log.md` are reserved navigation and history files: the root index declares `okf_version: "0.2"`, and subdirectory indexes and logs have no frontmatter.
 
-Maintained concepts require `type`, `title`, `description`, `status`, `owner`, `generated`, `tracks` and `sources`. Upstream OKF only requires `type`; the rest is **this project's profile**, not a change to the standard. Unknown keys are preserved. Lifecycle states are `draft`, `stable` and `deprecated`. The required keys, statuses and allowed tracked roots are configured in `docs/docs.config.json`.
+Maintained concepts require `type`, `title`, `description`, `status`, `owner`, `generated`, `tracks` and `sources`. Upstream OKF only requires `type`; the rest is **this project's profile**, not a change to the standard. Unknown keys are preserved. Lifecycle states are `draft`, `stable` and `deprecated`. The required keys, statuses, allowed tracked roots and folder descriptions are configured in `docs/docs.config.json`. Files other tools own (for example the `docs/agents/issue-tracker.md`, `triage-labels.md` and `domain.md` that Matt Pocock's setup writes) are listed under `ignore` and are not concepts.
 
 ```yaml
 ---

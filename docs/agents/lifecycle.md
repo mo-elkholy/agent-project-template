@@ -30,7 +30,7 @@ Never create a PR or merge without the user's explicit authorization **for that 
 
 ## Worktrees: Orca or plain git
 
-`template.config.json` sets `"orca": true|false`. With Orca enabled and installed, `start.mjs` creates an Orca worktree linked to the issue and launches the agent in it. Otherwise it creates a plain `git worktree` in `<repo>-worktrees/<name>` beside the main checkout and prints the command to launch the agent there. `finish.mjs` removes whichever kind it finds.
+`template.config.json` sets `"orca": true|false`. With Orca enabled and installed, `start.mjs` creates an Orca worktree linked to the issue and launches the agent in it. If Orca is disabled, not installed, not running, or does not know the repository, it says why and creates a plain `git worktree` in `<repo>-worktrees/<name>` beside the main checkout and prints the command to launch the agent there. `finish.mjs` removes whichever kind it finds.
 
 ## Codex GitHub review (optional)
 
