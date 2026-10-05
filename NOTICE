@@ -1,0 +1,19 @@
+Agent Project Template
+Copyright (c) 2026 Mohamed Elkholy. Licensed under the MIT License (see LICENSE).
+
+This template builds on, and expects you to install separately:
+
+  Skills For Real Engineers, by Matt Pocock
+  https://github.com/mattpocock/skills
+  MIT License. Not copied into this repository. The template's own skills
+  call his skills by name (/grill-with-docs, /to-spec, /to-tickets, /tdd,
+  /code-review, /retro, /setup-matt-pocock-skills and the pr skill).
+
+This template includes an unmodified reference copy of:
+
+  Open Knowledge Format (OKF) v0.2 specification
+  https://github.com/GoogleCloudPlatform/knowledge-catalog
+  Apache License 2.0. Copy and license in docs/references/.
+
+The workflow was first developed for a desktop application built by one owner
+with Claude Code and Codex working GitHub issues in parallel, then generalized.

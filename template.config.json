@@ -1,0 +1,20 @@
+{
+  "configured": false,
+  "projectName": "{{PROJECT_NAME}}",
+  "idPrefix": "{{ID_PREFIX}}",
+  "ownerRepo": "{{OWNER_REPO}}",
+  "branchPrefix": "{{BRANCH_PREFIX}}",
+  "defaultBranch": "main",
+  "agents": ["claude", "codex"],
+  "orca": true,
+  "codexReview": true,
+  "installCommand": "npm ci",
+  "worktreeCopy": ["node_modules"],
+  "lockfile": "package-lock.json",
+  "modules": {
+    "docsDrift": true,
+    "issueRegister": true,
+    "manuals": false,
+    "dependencyPolicy": true
+  }
+}

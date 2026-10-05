@@ -1,0 +1,17 @@
+node_modules/
+.DS_Store
+*.log
+
+# Local scratch and agent working state
+.scratch/
+.superpowers/
+.worktrees/
+
+# Credentials and environment configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx

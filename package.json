@@ -1,0 +1,14 @@
+{
+  "name": "agent-project-template-tools",
+  "private": true,
+  "type": "module",
+  "description": "Tooling for the agent project workflow. Safe to keep beside any stack.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "docs:sync": "node scripts/docs/docs.mjs sync",
+    "docs:check": "node scripts/docs/docs.mjs check",
+    "docs:ack": "node scripts/docs/docs.mjs ack",
+    "test:tools": "node --test scripts/"
+  },
+  "dependencies": { "js-yaml": "^4.1.0" }
+}
