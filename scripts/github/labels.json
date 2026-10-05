@@ -1,0 +1,29 @@
+{
+  "_comment": "Edited by /project-setup. Fixed labels are objects; areas and touches are plain names. Re-run bootstrap-labels.mjs after changes; it is safe to run repeatedly.",
+  "priority": [
+    { "name": "P0", "color": "b60205", "description": "Launch blocker" },
+    { "name": "P1", "color": "d93f0b", "description": "Next: valuable work that can follow a smaller launch" },
+    { "name": "P2", "color": "c5def5", "description": "Later expansion" }
+  ],
+  "claims": [
+    { "name": "in progress", "color": "0052cc", "description": "Claimed by an agent; see issue comment for branch" },
+    { "name": "agent: claude", "color": "d97757", "description": "Being worked by Claude" },
+    { "name": "agent: codex", "color": "000000", "description": "Being worked by Codex" }
+  ],
+  "triage": [
+    { "name": "needs-triage", "color": "fbca04", "description": "Maintainer needs to evaluate this issue" },
+    { "name": "needs-info", "color": "d876e3", "description": "Waiting on reporter for more information" },
+    { "name": "ready-for-agent", "color": "0e8a16", "description": "Fully specified, ready for an AFK agent" },
+    { "name": "ready-for-human", "color": "5319e7", "description": "Requires human implementation" },
+    { "name": "wontfix", "color": "ffffff", "description": "Will not be actioned" }
+  ],
+  "gates": [
+    { "name": "needs owner decision", "color": "f9d0c4", "description": "Requires owner decisions, credentials or service destinations" },
+    { "name": "needs external acceptance", "color": "d4c5f9", "description": "Requires human, expert or hardware evidence; tests cannot close it" }
+  ],
+  "spec": [
+    { "name": "spec", "color": "006b75", "description": "Umbrella spec issue; tickets link to it" }
+  ],
+  "areas": [],
+  "touches": ["schema"]
+}
