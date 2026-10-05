@@ -5,7 +5,7 @@ description: "The steps from idea to merged pull request, which skill or script 
 status: "stable"
 owner: "{{DOC_OWNER}}"
 generated: {"by": "claude/opus-5.5", "at": "2026-10-05T20:00:00+00:00"}
-tracks: [".agents/skills", "scripts/issue", "template.config.json"]
+tracks: [".agents/skills/project-setup", ".agents/skills/new-issue", ".agents/skills/start-issue", ".agents/skills/implement-issue", ".agents/skills/retro-to-docs", "scripts/issue", "template.config.json"]
 sources: [{"resource": "../../PLAYBOOK.md"}]
 ---
 # Issue lifecycle

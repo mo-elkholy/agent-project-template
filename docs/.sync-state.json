@@ -42,15 +42,19 @@
       "note": "Added start.mjs integration test and slug stop words; behavior described (git fallback beside main checkout, blockers refuse, claimed never forced) unchanged and now tested."
     },
     "docs/agents/lifecycle.md": {
-      "document": "e6a8ebcdc0fe1493bd2d7a7fbcc3ea4dfc9e94b7444a83f351ad62f2b512b2b4",
+      "document": "a35ee49875a4ac4b68de800977c2eb687ced883c44c1e21e089b9d33fbb2375d",
       "inputs": {
-        ".agents/skills": "d3c8f72c72d287657223e377837019a17431fdf49f77bd2ae490a3e49d230932",
+        ".agents/skills/project-setup": "efb50984b3b7d4d98cf9729c6065bbdb837b808d0f64ff15e3d37ae0fb099d47",
+        ".agents/skills/new-issue": "de8a137e9e55bce9570ba7171b1a9471d63c000c79e25acc334c386fdb1f5635",
+        ".agents/skills/start-issue": "23baea63f9487ce93f3e7f6f1cf07f49b252feed9df7cbdb8fd9ed78f51b6ef0",
+        ".agents/skills/implement-issue": "64a2f6a9e5c839c410713e1345ea584298996db3733ead11ca6f93f30d29bef4",
+        ".agents/skills/retro-to-docs": "596435c83956d373489e418455eb206f4a4ffc96adef790c4d4b4a6addc95bbc",
         "scripts/issue": "2938735b81a04042d7ea59e0708d735e6d6df3b546c5681b5f5ee703241f84a9",
         "template.config.json": "2a0c13783cc84538db293b389f38ecec1fef79c95eb30485486b2ed428dd2623"
       },
-      "reviewed_at": "2026-10-05T19:56:22.990Z",
+      "reviewed_at": "2026-10-05T19:57:33.255Z",
       "by": "claude/opus-5.5",
-      "note": "Added start.mjs integration test and slug stop words; behavior described (git fallback beside main checkout, blockers refuse, claimed never forced) unchanged and now tested."
+      "note": "Narrowed tracks to our own skill folders so installing or updating Matt Pocock's skills into the shared folder does not cause false drift (found in end-to-end test). Prose unchanged."
     },
     "docs/agents/review-risks.md": {
       "document": "f55f948be173066247bdfdfce33629381a6b40c5cd3cf2484975af7e912d22d0",

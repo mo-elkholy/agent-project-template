@@ -400,6 +400,7 @@ This workflow was first built for a desktop application developed by one owner w
 - **Add a review risk** whenever a bug class slips through: a row in `docs/agents/review-risks.md`.
 - **Add a regression group** for each fragile area: a row in `docs/agents/verification.md`.
 - **Add a subsystem** to `touches` in `scripts/github/labels.json` and rerun the label script.
+- **Track only folders you own.** Matt Pocock's skills install into the same `.agents/skills/` folder as ours. Docs should track our skill folders by name, never the whole folder, or every `npx skills update` shows up as drift.
 - **Add canonical documents** under `docs/` with frontmatter and `tracks`, then `docs:sync` and `docs:ack`. List them in the sources-of-truth table in `docs/SPEC.md`.
 - **Add CI later:** a job that runs `npm ci && npm run test:tools && npm run docs:check` is a fast first gate.
 - **Change the stops:** do not remove them. If you want fewer interruptions, batch several small issues into one PR rather than letting agents merge alone.
