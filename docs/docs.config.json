@@ -1,7 +1,40 @@
 {
   "title": "{{PROJECT_NAME}} documentation",
-  "trackRoots": ["src", "scripts", "tests", "docs", ".agents", ".github", "AGENTS.md", "README.md", "PLAYBOOK.md", "GLOSSARY.md", "package.json", "template.config.json"],
-  "linkCheckedFiles": ["AGENTS.md", "README.md", "PLAYBOOK.md", "GLOSSARY.md", "changelog.md"],
-  "requiredKeys": ["type", "title", "description", "owner"],
-  "statuses": ["draft", "stable", "deprecated"]
+  "trackRoots": [
+    "src",
+    "scripts",
+    "tests",
+    "docs",
+    ".agents",
+    ".github",
+    "AGENTS.md",
+    "README.md",
+    "PLAYBOOK.md",
+    "GLOSSARY.md",
+    "package.json",
+    "template.config.json"
+  ],
+  "linkCheckedFiles": [
+    "AGENTS.md",
+    "README.md",
+    "PLAYBOOK.md",
+    "GLOSSARY.md",
+    "changelog.md"
+  ],
+  "requiredKeys": [
+    "type",
+    "title",
+    "description",
+    "owner"
+  ],
+  "statuses": [
+    "draft",
+    "stable",
+    "deprecated"
+  ],
+  "directories": {
+    "agents": "Rules agents follow in this repository: verification, parallel work, lifecycle, review risks, dependencies.",
+    "references": "Pinned upstream references and their licenses.",
+    "adr": "Architecture decision records."
+  }
 }

@@ -257,3 +257,16 @@ test("config can add link-checked files", (t) => {
   fs.writeFileSync(path.join(root, "PLAYBOOK.md"), "[Missing](docs/absent.md)\n");
   assert(runDocs(root, "check").errors.some((e) => e.includes("broken local link")));
 });
+
+test("config describes subdirectories in the root index", (t) => {
+  const root = fixture(t);
+  fs.writeFileSync(
+    path.join(root, "docs/docs.config.json"),
+    JSON.stringify({ trackRoots: ["src"], directories: { guides: "How-to guides." } }),
+  );
+  fs.mkdirSync(path.join(root, "docs/guides"));
+  write(root);
+  fs.renameSync(path.join(root, "docs/example.md"), path.join(root, "docs/guides/example.md"));
+  assert.deepEqual(runDocs(root, "sync").errors, []);
+  assert.match(fs.readFileSync(path.join(root, "docs/index.md"), "utf8"), /^- \[guides\]\(guides\/index.md\) - How-to guides\.$/m);
+});

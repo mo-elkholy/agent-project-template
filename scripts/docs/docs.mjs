@@ -145,7 +145,7 @@ function indexes(docs) {
         children
           .map(
             (d) =>
-              `- [${path.posix.basename(d)}](${path.posix.basename(d)}/index.md) - Supporting reference documents.\n`,
+              `- [${path.posix.basename(d)}](${path.posix.basename(d)}/index.md) - ${config.directories?.[path.posix.basename(d)] ?? "Supporting documents."}\n`,
           )
           .join("");
     output[`${dir}/index.md`] = text;

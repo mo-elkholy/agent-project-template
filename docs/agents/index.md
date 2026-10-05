@@ -1,0 +1,9 @@
+# Agents
+
+## Documents
+
+- [Dependency policy](dependencies.md) - Optional module: no paid runtime dependencies, license checks before bundling, and evaluation is not adoption. (stable)
+- [Issue lifecycle](lifecycle.md) - The steps from idea to merged pull request, which skill or script runs each, and the two stops that need the user. (stable)
+- [Parallel work](parallel-work.md) - Claims, blockers, conflicts and the schema lock that let several agents work issues at the same time. (stable)
+- [Review risks](review-risks.md) - The checklist the adversarial reviewer uses to try to break a change, plus project-specific risks. (stable)
+- [Verification cadence](verification.md) - How much to test for each kind of change, and how to report what was actually verified. (stable)

@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "documents": {
+    "docs/SPEC.md": {
+      "document": "24db6fb02298155d1540246fe4ce220a3509b440e2d4f8902d54b64025e7c85f",
+      "inputs": {
+        "scripts/docs/docs.mjs": "984adbc488ed8c3c20f8ac942a8f76b1b0fbf587d78f64a9bd7f169f3f5e4698",
+        "docs/docs.config.json": "2dbc4617124fe184ac8e67a269bb1c5d5d164fbdc4f8eb2040eb1a1d85f3e436"
+      },
+      "reviewed_at": "2026-10-05T19:49:29.409Z",
+      "by": "claude/opus-5.5",
+      "note": "Wrote the generalized OKF profile and sync playbook for the template; commands match scripts/docs and package.json."
+    },
+    "docs/documentation-sync.md": {
+      "document": "412e09f99c3e00760d0f6a3ac82556f3d619b99036aef325bac10ac0ae01f215",
+      "inputs": {
+        "scripts/docs": "72348880ffcbe2c7a651f16915f2d18cce577abddd5a4d7a5609407f904be7cc",
+        "docs/docs.config.json": "2dbc4617124fe184ac8e67a269bb1c5d5d164fbdc4f8eb2040eb1a1d85f3e436",
+        "package.json": "0f230d32dd623a368f210c6b97f33bb80df36c2cd5cd74dd67b97770d44ac808",
+        "AGENTS.md": "456004fae002dbce230cfc8568ac4a1ee250b43ee351f7c6a0536e62fcefb522"
+      },
+      "reviewed_at": "2026-10-05T19:49:29.412Z",
+      "by": "claude/opus-5.5",
+      "note": "Wrote the generalized OKF profile and sync playbook for the template; commands match scripts/docs and package.json."
+    },
+    "docs/agents/verification.md": {
+      "document": "776ae8e0de0b02954bc2d3df4c8c4df332ff4eb5746e5b9f1edb1a34446ced33",
+      "inputs": {
+        "package.json": "0f230d32dd623a368f210c6b97f33bb80df36c2cd5cd74dd67b97770d44ac808"
+      },
+      "reviewed_at": "2026-10-05T19:49:29.922Z",
+      "by": "claude/opus-5.5",
+      "note": "Wrote generalized agent rules; parallel-work edges match scripts/issue/lib.mjs (blocked-by vs conflicts, schema lock, closed/claimed never forced). Skills and playbook referenced here are completed in later steps."
+    },
+    "docs/agents/parallel-work.md": {
+      "document": "af3d042e2fa114cd2ea01d89ede1c24bb4e2e5776f396926404f0af71a13724f",
+      "inputs": {
+        "scripts/issue": "ad1ac26ff56833605ac9710efe58247cf9c60c98194253d0c813f0eb6283014f"
+      },
+      "reviewed_at": "2026-10-05T19:49:29.925Z",
+      "by": "claude/opus-5.5",
+      "note": "Wrote generalized agent rules; parallel-work edges match scripts/issue/lib.mjs (blocked-by vs conflicts, schema lock, closed/claimed never forced). Skills and playbook referenced here are completed in later steps."
+    },
+    "docs/agents/lifecycle.md": {
+      "document": "e6a8ebcdc0fe1493bd2d7a7fbcc3ea4dfc9e94b7444a83f351ad62f2b512b2b4",
+      "inputs": {
+        ".agents/skills": "e46f5903bb6d7dffd31140f593656119a908416056b14d8a147fa1362c3f004c",
+        "scripts/issue": "ad1ac26ff56833605ac9710efe58247cf9c60c98194253d0c813f0eb6283014f",
+        "template.config.json": "2a0c13783cc84538db293b389f38ecec1fef79c95eb30485486b2ed428dd2623"
+      },
+      "reviewed_at": "2026-10-05T19:49:29.927Z",
+      "by": "claude/opus-5.5",
+      "note": "Wrote generalized agent rules; parallel-work edges match scripts/issue/lib.mjs (blocked-by vs conflicts, schema lock, closed/claimed never forced). Skills and playbook referenced here are completed in later steps."
+    },
+    "docs/agents/review-risks.md": {
+      "document": "f55f948be173066247bdfdfce33629381a6b40c5cd3cf2484975af7e912d22d0",
+      "inputs": {
+        ".agents/skills/implement-issue": "e46f5903bb6d7dffd31140f593656119a908416056b14d8a147fa1362c3f004c"
+      },
+      "reviewed_at": "2026-10-05T19:49:29.927Z",
+      "by": "claude/opus-5.5",
+      "note": "Wrote generalized agent rules; parallel-work edges match scripts/issue/lib.mjs (blocked-by vs conflicts, schema lock, closed/claimed never forced). Skills and playbook referenced here are completed in later steps."
+    },
+    "docs/agents/dependencies.md": {
+      "document": "23eaf7a6aaa050a2837508ee7136f539a8f54379db933fdc02010cbd4c8e7815",
+      "inputs": {
+        "package.json": "0f230d32dd623a368f210c6b97f33bb80df36c2cd5cd74dd67b97770d44ac808"
+      },
+      "reviewed_at": "2026-10-05T19:49:29.927Z",
+      "by": "claude/opus-5.5",
+      "note": "Wrote generalized agent rules; parallel-work edges match scripts/issue/lib.mjs (blocked-by vs conflicts, schema lock, closed/claimed never forced). Skills and playbook referenced here are completed in later steps."
+    },
+    "docs/issue-register.md": {
+      "document": "266749155ef8bee4089c1229ed610ebded7b4d9c0904ec2de3a45b54cbad0d8a",
+      "inputs": {},
+      "reviewed_at": "2026-10-05T19:49:30.417Z",
+      "by": "claude/opus-5.5",
+      "note": "Empty register with ID rules; design record frontmatter added without changing the approved design text."
+    },
+    "docs/template-design.md": {
+      "document": "65c8b33efd0b33cb81d927d284d9a4daf9ede2a409b0ca3b9da6466fbe8b74ff",
+      "inputs": {},
+      "reviewed_at": "2026-10-05T19:49:30.418Z",
+      "by": "claude/opus-5.5",
+      "note": "Empty register with ID rules; design record frontmatter added without changing the approved design text."
+    },
+    "docs/references/okf-spec.md": {
+      "document": "50b9553f17ebedfe4b0780ace016a858425de2a00b344154d31d4bf8e46438d6",
+      "inputs": {},
+      "reviewed_at": "2026-10-05T19:49:30.920Z",
+      "by": "claude/opus-5.5",
+      "note": "Unmodified upstream OKF v0.2 reference copied with its license; body hash verified by docs:check."
+    }
+  }
+}

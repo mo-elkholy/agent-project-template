@@ -1,3 +1,13 @@
+---
+type: "Design Record"
+title: "Template design"
+description: "Why the agent project template is shaped the way it is: decisions, workflow, labels, structure and modules."
+status: "stable"
+owner: "Agent project template"
+generated: {"by": "claude/opus-5.5", "at": "2026-10-05T19:30:00+00:00"}
+tracks: []
+sources: [{"id": "mattpocock-skills", "resource": "https://github.com/mattpocock/skills"}]
+---
 # Agent project template: design
 
 Status: approved design, 2026-10-05. This document records why the template is shaped the way it is. The [playbook](../PLAYBOOK.md) is the user-facing guide.
