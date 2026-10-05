@@ -2,13 +2,13 @@
 const key = (name) => name.toLowerCase();
 const same = (a, b) => a.color.toLowerCase() === b.color.toLowerCase() && (a.description ?? "") === (b.description ?? "");
 
-export function diffLabels(wanted, existing) {
+export function diffLabels(wanted, existing, { createOnly = false } = {}) {
   const byName = new Map(existing.map((l) => [key(l.name), l]));
   const create = [], update = [];
   for (const w of wanted) {
     const have = byName.get(key(w.name));
     if (!have) create.push(w);
-    else if (!same(w, have)) update.push(w);
+    else if (!createOnly && !same(w, have)) update.push(w);
   }
   return { create, update };
 }

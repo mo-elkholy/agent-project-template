@@ -22,3 +22,8 @@ test("expandLabels turns areas and touches into prefixed labels", () => {
   assert.deepEqual(all.map((l) => l.name), ["P0", "area: web", "touches: schema"]);
   assert.match(all[2].description, /check before parallel work/);
 });
+
+test("diffLabels in create-only mode never touches existing labels", () => {
+  const d = diffLabels([label("P0", "b60205"), label("P9")], [label("P0", "ffffff")], { createOnly: true });
+  assert.deepEqual(d, { create: [label("P9")], update: [] });
+});
